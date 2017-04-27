@@ -10,7 +10,11 @@ declare function getWinchAndHook {
 	// Get the winch PartModule.
 	// Make the assumption that there is only one winch (or that we want the first!)
 	declare local Winch to ship:partsdubbed("KAS.Winch2")[0]:getmodule("KASModuleWinch").
+	// testing only!
+	//declare global W2 to Winch.
 	declare local Hook to ship:partsdubbed("KAS.Hook.Harpoon")[0]:getmodule("KASModuleHarpoon").
+	// another testing global
+	//declare global H2 to Hook.
 	
 	// Test the modules were found.
 	if defined Winch and defined Hook {
@@ -72,6 +76,14 @@ declare function detachAndRetract {
 	}.
 }.
 
+global reslist to 0.
+global h to 0.
+global w to 0.
+set reslist to getWinchAndHook().
+set h to reslist[2].
+set w to reslist[1].
 //set hook to getWinchAndHook()[2].
 //detachFromGround(hook).
+w:doevent("eject").
+wait 5.
 detachAndRetract(True).
